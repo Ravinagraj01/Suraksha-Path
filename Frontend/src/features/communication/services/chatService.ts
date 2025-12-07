@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ChatServiceError } from '../utils/errorHandling';
 import type { ChatConfig } from '../types';
 
-const API_KEY = import.meta.env.VITE_GOOGLE_AI_KEY || 'AIzaSyAWjI_0zrCRkR5Iq1xiep26QxaPfzaLaIY';
+const API_KEY = import.meta.env.VITE_GOOGLE_AI_KEY || '';
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export async function getChatResponse(message: string, config: ChatConfig): Promise<string> {
