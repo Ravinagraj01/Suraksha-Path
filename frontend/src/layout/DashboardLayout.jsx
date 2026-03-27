@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import FilterModal from "../components/FilterModal";
+import PremiumSettingsModal from "../components/PremiumSettingsModal";
 import PremiumHeader from "../components/PremiumHeader";
 import PremiumSidebar from "../components/PremiumSidebar";
 import { useAuth } from "../context/AuthContext";
@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }) {
         </main>
       </div>
       
-      <FilterModal open={filtersOpen} onClose={() => setFiltersOpen(false)} />
+      <PremiumSettingsModal open={filtersOpen} onClose={() => setFiltersOpen(false)} />
     </div>
   );
 }

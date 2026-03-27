@@ -112,7 +112,7 @@ export default function PremiumUserDashboard() {
           <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:p-8">
             <div>
               <p className="text-small text-blue-300 font-medium uppercase tracking-wider">Citizen Operations Panel</p>
-              <h1 className="mt-4 text-display font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent md:leading-[1.05]">
+              <h1 className="mt-4 text-display font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent md:leading-[1.05]">
                 Your Disaster Readiness Hub
               </h1>
               <p className="mt-6 max-w-xl text-body text-blue-200 leading-relaxed">

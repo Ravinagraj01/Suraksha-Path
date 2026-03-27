@@ -78,7 +78,7 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
                   <h1 className="text-h3 font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     SurakshaPath
                   </h1>
-                  <p className="text-caption text-blue-200">Disaster Management</p>
+                  <p className="text-caption text-purple-200">Disaster Management</p>
                 </div>
               </motion.div>
             )}

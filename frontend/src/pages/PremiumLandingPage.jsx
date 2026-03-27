@@ -150,12 +150,16 @@ export default function PremiumLandingPage() {
               Monitor flood risk heatmaps, track shelters, trigger SOS response, and coordinate recovery analytics from one unified command interface.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <AnimatedButton variant="primary" icon={<ArrowRight size={16} />}>
-                Get Started
-              </AnimatedButton>
-              <AnimatedButton variant="glass" icon={<Activity size={16} />}>
-                View Dashboard
-              </AnimatedButton>
+              <Link to="/login">
+                <AnimatedButton variant="primary" icon={<ArrowRight size={16} />}>
+                  Get Started
+                </AnimatedButton>
+              </Link>
+              <Link to="/login">
+                <AnimatedButton variant="glass" icon={<Activity size={16} />}>
+                  View Dashboard
+                </AnimatedButton>
+              </Link>
             </div>
           </motion.div>
           

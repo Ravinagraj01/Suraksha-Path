@@ -56,9 +56,9 @@ const PremiumHeader = ({ onOpenFilters }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onOpenFilters}
-            className="p-3 bg-slate-700 rounded-xl hover:bg-slate-600 transition-colors"
+            className="p-3 bg-slate-700 rounded-xl hover:bg-slate-600 transition-all hover:border-purple-500/50 border border-transparent"
           >
-            <Settings className="w-5 h-5 text-gray-300" />
+            <Settings className="w-5 h-5 text-purple-400" />
           </motion.button>
 
           {/* User Profile */}

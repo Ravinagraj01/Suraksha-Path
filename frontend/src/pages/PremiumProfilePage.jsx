@@ -95,7 +95,7 @@ export default function PremiumProfilePage() {
       <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-hero font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-hero font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
               Profile
             </h1>
             <p className="text-body text-blue-200 mt-2">

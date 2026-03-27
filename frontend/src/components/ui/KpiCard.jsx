@@ -13,7 +13,7 @@ const KpiCard = ({
   className = ''
 }) => {
   const tones = {
-    primary: 'border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-blue-600/10',
+    primary: 'border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-purple-600/10',
     success: 'border-green-500/50 bg-gradient-to-br from-green-500/10 to-green-600/10',
     warning: 'border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-orange-600/10',
     danger: 'border-red-500/50 bg-gradient-to-br from-red-500/10 to-red-600/10',
@@ -73,7 +73,7 @@ const KpiCard = ({
                 {icon}
               </div>
             )}
-            <p className="text-small text-blue-300 font-medium uppercase tracking-wider">
+            <p className="text-small text-purple-300 font-medium uppercase tracking-wider">
               {label}
             </p>
           </div>
@@ -101,7 +101,7 @@ const KpiCard = ({
                 delay: delay + 0.2,
                 type: 'spring'
               }}
-              className="text-hero font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
+              className="text-hero font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent"
             >
               {value?.toLocaleString() || '0'}
             </motion.div>
@@ -118,7 +118,7 @@ const KpiCard = ({
               delay: delay + 0.4,
               ease: 'easeOut'
             }}
-            className="h-1 bg-gradient-to-r from-blue-400/50 to-purple-400/50 rounded-full"
+            className="h-1 bg-gradient-to-r from-purple-400/50 to-pink-400/50 rounded-full"
           />
         )}
       </div>

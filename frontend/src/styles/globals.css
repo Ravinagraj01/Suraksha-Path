@@ -19,13 +19,13 @@
   --text-muted: #94A3B8;
   --text-inverse: #0F172A;
   
-  /* Brand Colors */
-  --primary: #3B82F6;
-  --primary-hover: #60A5FA;
-  --primary-light: #93C5FD;
-  --secondary: #06B6D4;
-  --secondary-hover: #22D3EE;
-  --secondary-light: #67E8F9;
+  /* Brand Colors - More Balanced Palette */
+  --primary: #8B5CF6; /* Purple instead of blue */
+  --primary-hover: #A78BFA;
+  --primary-light: #C4B5FD;
+  --secondary: #EC4899; /* Pink instead of cyan */
+  --secondary-hover: #F472B6;
+  --secondary-light: #F9A8D4;
   
   /* Status Colors */
   --success: #10B981;
@@ -37,12 +37,13 @@
   --critical: #DC2626;
   --critical-light: #EF4444;
   
-  /* Accent Colors */
-  --accent-blue: #0EA5E9;
+  /* Accent Colors - More Variety */
   --accent-purple: #8B5CF6;
   --accent-pink: #EC4899;
-  --accent-green: #22C55E;
   --accent-orange: #F97316;
+  --accent-green: #22C55E;
+  --accent-teal: #14B8A6;
+  --accent-indigo: #6366F1;
   
   /* Transitions */
   --transition-fast: 150ms;
@@ -105,7 +106,7 @@ body {
   background: var(--surface-hover);
   border-color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
 }
 
 /* Premium Buttons */
@@ -121,12 +122,12 @@ body {
   position: relative;
   overflow: hidden;
   transition: all var(--transition-base);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
 }
 
 .btn-premium:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
 }
 
 .btn-premium:active {
@@ -151,7 +152,7 @@ body {
   border-color: var(--primary);
   color: var(--primary-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
 }
 
 /* Premium Inputs */
@@ -168,7 +169,7 @@ body {
 
 .input-premium:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
   background: var(--surface-hover);
 }
 

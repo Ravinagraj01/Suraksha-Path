@@ -78,7 +78,7 @@ export default function PremiumSheltersPage() {
       <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-hero font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-hero font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
               Shelters
             </h1>
             <p className="text-body text-blue-200 mt-2">

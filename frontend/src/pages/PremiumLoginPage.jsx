@@ -7,7 +7,8 @@ import {
   Users, 
   Eye, 
   EyeOff,
-  Loader2
+  Loader2,
+  Home
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -119,8 +120,14 @@ const PremiumLoginPage = () => {
         <div className="absolute -bottom-8 left-40 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-4000" />
       </div>
 
-      {/* Theme Toggle */}
-      <div className="absolute top-4 right-4 z-10">
+      {/* Theme Toggle & Home Navigation */}
+      <div className="absolute top-4 right-4 z-10 flex items-center space-x-3">
+        <Link 
+          to="/" 
+          className="p-3 bg-slate-800/80 backdrop-blur-sm rounded-xl border border-slate-600 hover:bg-slate-700/80 transition-all hover:border-purple-500/50 group"
+        >
+          <Home className="w-5 h-5 text-blue-300 group-hover:text-purple-400 transition-colors" />
+        </Link>
         <ThemeToggle />
       </div>
 
@@ -337,6 +344,22 @@ const PremiumLoginPage = () => {
                 >
                   User Demo
                 </AnimatedButton>
+              </div>
+            </div>
+
+            {/* Home Navigation */}
+            <div className="mt-6 pt-6 border-t border-slate-600">
+              <div className="text-center">
+                <p className="text-caption text-gray-400 mb-3">Just looking around?</p>
+                <Link 
+                  to="/" 
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30 hover:border-purple-400/50 transition-all group"
+                >
+                  <Home className="w-4 h-4 text-purple-300 group-hover:text-purple-200 transition-colors" />
+                  <span className="text-small text-purple-300 group-hover:text-purple-200 transition-colors">
+                    Back to Home
+                  </span>
+                </Link>
               </div>
             </div>
           </div>
