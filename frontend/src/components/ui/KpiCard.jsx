@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
-import { cn } from 'clsx';
+import { cn } from '../../utils/cn';
 
 const KpiCard = ({ 
   label, 
@@ -13,17 +13,17 @@ const KpiCard = ({
   className = ''
 }) => {
   const tones = {
-    primary: 'glow-primary',
-    success: 'glow-success',
-    warning: 'glow-warning',
-    danger: 'glow-danger',
-    critical: 'animate-pulseGlow'
+    primary: 'border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-blue-600/10',
+    success: 'border-green-500/50 bg-gradient-to-br from-green-500/10 to-green-600/10',
+    warning: 'border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-orange-600/10',
+    danger: 'border-red-500/50 bg-gradient-to-br from-red-500/10 to-red-600/10',
+    critical: 'border-red-600/50 bg-gradient-to-br from-red-600/20 to-red-700/20 animate-pulseGlow'
   };
 
   const deltaColors = {
-    positive: 'text-green-500',
-    negative: 'text-red-500',
-    neutral: 'text-gray-500'
+    positive: 'text-green-400',
+    negative: 'text-red-400',
+    neutral: 'text-gray-400'
   };
 
   const getDeltaType = (delta) => {
@@ -69,11 +69,11 @@ const KpiCard = ({
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
             {icon && (
-              <div className="p-2 rounded-xl bg-white/10">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-white/20 to-white/10">
                 {icon}
               </div>
             )}
-            <p className="text-small text-gray-400 font-medium uppercase tracking-wider">
+            <p className="text-small text-blue-300 font-medium uppercase tracking-wider">
               {label}
             </p>
           </div>
@@ -101,7 +101,7 @@ const KpiCard = ({
                 delay: delay + 0.2,
                 type: 'spring'
               }}
-              className="text-hero font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+              className="text-hero font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
             >
               {value?.toLocaleString() || '0'}
             </motion.div>
@@ -118,7 +118,7 @@ const KpiCard = ({
               delay: delay + 0.4,
               ease: 'easeOut'
             }}
-            className="h-1 bg-gradient-to-r from-blue-500/50 to-purple-500/50 rounded-full"
+            className="h-1 bg-gradient-to-r from-blue-400/50 to-purple-400/50 rounded-full"
           />
         )}
       </div>

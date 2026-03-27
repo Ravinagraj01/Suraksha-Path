@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { cn } from 'clsx';
+import { cn } from '../../utils/cn';
 import { Loader2 } from 'lucide-react';
 
 const AnimatedButton = ({ 
@@ -17,7 +17,7 @@ const AnimatedButton = ({
   const variants = {
     primary: 'btn-premium text-white focus:ring-blue-500',
     secondary: 'btn-premium text-white focus:ring-cyan-500',
-    glass: 'btn-glass text-current focus:ring-white',
+    glass: 'btn-glass text-current focus:ring-gray-500',
     danger: 'btn-premium text-white focus:ring-red-500',
     success: 'btn-premium text-white focus:ring-green-500'
   };

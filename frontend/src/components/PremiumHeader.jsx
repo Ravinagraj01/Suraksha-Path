@@ -17,7 +17,7 @@ const PremiumHeader = ({ onOpenFilters }) => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-0 z-30 glass border-b border-white/10"
+      className="sticky top-0 z-30 bg-slate-800 border-b border-slate-600"
     >
       <div className="flex items-center justify-between px-6 py-4">
         {/* Left Section - Search */}
@@ -29,7 +29,7 @@ const PremiumHeader = ({ onOpenFilters }) => {
               placeholder="Search incidents, reports, volunteers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all"
+              className="w-full pl-12 pr-4 py-3 bg-slate-700 border border-slate-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-slate-600 transition-all"
               whileFocus={{ scale: 1.02 }}
             />
           </div>
@@ -41,7 +41,7 @@ const PremiumHeader = ({ onOpenFilters }) => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative p-3 glass rounded-xl hover:bg-white/10 transition-colors"
+            className="relative p-3 bg-slate-700 rounded-xl hover:bg-slate-600 transition-colors"
           >
             <Bell className="w-5 h-5 text-gray-300" />
             <motion.div
@@ -56,7 +56,7 @@ const PremiumHeader = ({ onOpenFilters }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onOpenFilters}
-            className="p-3 glass rounded-xl hover:bg-white/10 transition-colors"
+            className="p-3 bg-slate-700 rounded-xl hover:bg-slate-600 transition-colors"
           >
             <Settings className="w-5 h-5 text-gray-300" />
           </motion.button>
@@ -67,7 +67,7 @@ const PremiumHeader = ({ onOpenFilters }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center space-x-3 p-2 glass rounded-xl hover:bg-white/10 transition-colors"
+              className="flex items-center space-x-3 p-2 bg-slate-700 rounded-xl hover:bg-slate-600 transition-colors"
             >
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <User className="w-4 h-4 text-white" />
@@ -88,18 +88,18 @@ const PremiumHeader = ({ onOpenFilters }) => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute right-0 mt-2 w-48 glass rounded-xl border border-white/10 overflow-hidden"
+                className="absolute right-0 mt-2 w-48 bg-slate-700 border border-slate-500 rounded-xl overflow-hidden"
               >
                 <div className="p-2">
-                  <button className="w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-white/10 rounded-lg transition-colors flex items-center space-x-2">
+                  <button className="w-full text-left px-3 py-2 text-sm text-blue-200 hover:bg-slate-600 rounded-lg transition-colors flex items-center space-x-2">
                     <User size={16} />
                     <span>Profile</span>
                   </button>
-                  <button className="w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-white/10 rounded-lg transition-colors flex items-center space-x-2">
+                  <button className="w-full text-left px-3 py-2 text-sm text-blue-200 hover:bg-slate-600 rounded-lg transition-colors flex items-center space-x-2">
                     <Settings size={16} />
                     <span>Settings</span>
                   </button>
-                  <hr className="border-white/10 my-2" />
+                  <hr className="border-slate-600 my-2" />
                   <button
                     onClick={logout}
                     className="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-lg transition-colors flex items-center space-x-2"

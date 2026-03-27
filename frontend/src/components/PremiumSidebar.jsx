@@ -59,10 +59,10 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
           x: collapsed && isMobile ? -280 : 0
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="fixed left-0 top-0 h-screen glass z-50 md:z-30 border-r border-white/10"
+        className="fixed left-0 top-0 h-screen bg-slate-800 border-r border-slate-600 z-50 md:z-30"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/10">
+        <div className="flex items-center justify-between p-6 border-b border-slate-600">
           <AnimatePresence>
             {!collapsed && (
               <motion.div
@@ -78,7 +78,7 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
                   <h1 className="text-h3 font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     SurakshaPath
                   </h1>
-                  <p className="text-caption text-gray-400">Disaster Management</p>
+                  <p className="text-caption text-blue-200">Disaster Management</p>
                 </div>
               </motion.div>
             )}
@@ -86,7 +86,7 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
 
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="p-2 rounded-xl glass hover:bg-white/10 transition-colors"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors"
           >
             {collapsed ? <Menu size={20} /> : <X size={20} />}
           </button>
@@ -113,7 +113,7 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
                     transition-all duration-300 cursor-pointer group
                     ${active 
                       ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30' 
-                      : 'hover:bg-white/5'
+                      : 'hover:bg-slate-800'
                     }
                   `}
                 >
@@ -129,7 +129,7 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
                     p-2 rounded-lg transition-all duration-300
                     ${active 
                       ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white' 
-                      : 'text-gray-400 group-hover:text-white group-hover:bg-white/10'
+                      : 'text-gray-400 group-hover:text-white group-hover:bg-slate-700'
                     }
                   `}>
                     <Icon size={18} />
@@ -162,7 +162,7 @@ const PremiumSidebar = ({ collapsed, setCollapsed }) => {
         </nav>
 
         {/* Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-700">
           <div className="flex items-center justify-between">
             <AnimatePresence>
               {!collapsed && (

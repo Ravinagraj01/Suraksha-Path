@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { cn } from 'clsx';
+import { cn } from '../../utils/cn';
 
 const GlassCard = ({ 
   children, 
@@ -18,9 +18,8 @@ const GlassCard = ({
         ease: [0.68, -0.55, 0.265, 1.55]
       }}
       className={cn(
-        'glass',
-        hover && 'glass-hover',
-        'rounded-2xl p-6 relative overflow-hidden',
+        'bento-card',
+        hover && 'hover:shadow-lg',
         className
       )}
       {...props}

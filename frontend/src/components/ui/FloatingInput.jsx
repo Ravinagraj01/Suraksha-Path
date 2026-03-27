@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { cn } from 'clsx';
+import { cn } from '../../utils/cn';
 
 const FloatingInput = ({ 
   label, 
