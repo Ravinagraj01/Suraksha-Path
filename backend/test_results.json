@@ -1,0 +1,68 @@
+[
+  {
+    "test": "Backend Health Check",
+    "status": "PASS",
+    "details": "Backend is running",
+    "timestamp": "2026-03-27T20:31:28.377545"
+  },
+  {
+    "test": "Admin Login",
+    "status": "PASS",
+    "details": "Admin authenticated successfully",
+    "timestamp": "2026-03-27T20:31:28.691509"
+  },
+  {
+    "test": "User Login",
+    "status": "PASS",
+    "details": "User authenticated successfully",
+    "timestamp": "2026-03-27T20:31:30.992553"
+  },
+  {
+    "test": "SOS Creation (User)",
+    "status": "PASS",
+    "details": "SOS created with ID: 45f9191e-8aad-4841-88ef-408300d653a6",
+    "timestamp": "2026-03-27T20:31:31.233831"
+  },
+  {
+    "test": "Admin SOS Visibility",
+    "status": "PASS",
+    "details": "Admin can see 3 SOS requests",
+    "timestamp": "2026-03-27T20:31:31.243068"
+  },
+  {
+    "test": "Damage Report Creation",
+    "status": "PASS",
+    "details": "Report created with ID: 649a5ff9-c00d-4a4e-8d4f-c67389e6c8ee",
+    "timestamp": "2026-03-27T20:31:31.500020"
+  },
+  {
+    "test": "Volunteer Registration",
+    "status": "PASS",
+    "details": "Volunteer registered with ID: 96753577-b2c2-4b8c-8325-030923a12ca5",
+    "timestamp": "2026-03-27T20:31:31.745826"
+  },
+  {
+    "test": "Shelter Listing",
+    "status": "PASS",
+    "details": "Found 1 shelters",
+    "timestamp": "2026-03-27T20:31:31.755850"
+  },
+  {
+    "test": "Shelter Capacity Update",
+    "status": "PASS",
+    "details": "Capacity updated successfully",
+    "timestamp": "2026-03-27T20:31:31.766058"
+  },
+  {
+    "test": "AI News System",
+    "status": "PASS",
+    "details": "Retrieved 1 news items",
+    "timestamp": "2026-03-27T20:31:34.297398"
+  },
+  {
+    "test": "User Profile",
+    "status": "PASS",
+    "details": "Profile retrieved for admin@surakshapath.in",
+    "timestamp": "2026-03-27T20:31:34.303755"
+  }
+]
