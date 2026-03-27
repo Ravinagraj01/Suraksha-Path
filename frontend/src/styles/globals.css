@@ -188,20 +188,22 @@ body {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-muted);
+  color: #94A3B8;
   font-size: 14px;
   pointer-events: none;
   transition: all var(--transition-base);
-  background: var(--bg-primary);
+  background: #1E293B;
   padding: 0 4px;
+  z-index: 1;
 }
 
 .floating-input:focus ~ .floating-label,
 .floating-input:not(:placeholder-shown) ~ .floating-label {
   top: 0;
   font-size: 12px;
-  color: var(--primary);
+  color: #8B5CF6;
   font-weight: 500;
+  background: #1E293B;
 }
 
 /* Typography Scale */

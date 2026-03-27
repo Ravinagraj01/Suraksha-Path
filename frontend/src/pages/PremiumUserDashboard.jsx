@@ -104,18 +104,18 @@ export default function PremiumUserDashboard() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-6"
+      className="space-y-4"
     >
       {/* Hero Section */}
       <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
         <GlassCard delay={0.1}>
-          <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:p-8">
+          <div className="grid items-center gap-6 p-4 md:grid-cols-2 md:p-6">
             <div>
-              <p className="text-small text-blue-300 font-medium uppercase tracking-wider">Citizen Operations Panel</p>
-              <h1 className="mt-4 text-display font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent md:leading-[1.05]">
+              <p className="text-caption text-blue-300 font-medium uppercase tracking-wider">Citizen Operations Panel</p>
+              <h1 className="mt-3 text-h1 font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent md:leading-[1.05]">
                 Your Disaster Readiness Hub
               </h1>
-              <p className="mt-6 max-w-xl text-body text-blue-200 leading-relaxed">
+              <p className="mt-4 max-w-lg text-small text-blue-200 leading-relaxed">
                 Track SOS, upload field evidence, follow AI disaster updates, and collaborate with district volunteer teams.
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function PremiumUserDashboard() {
               <img
                 src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?auto=format&fit=crop&w=1400&q=80"
                 alt="Citizen support collaboration"
-                className="relative h-64 w-full rounded-2xl object-cover border border-slate-700"
+                className="relative h-48 w-full rounded-2xl object-cover border border-slate-700"
               />
             </motion.div>
           </div>
@@ -179,40 +179,40 @@ export default function PremiumUserDashboard() {
           {/* Quick Actions */}
           <motion.div variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } }}>
             <GlassCard delay={0.6}>
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-h2 font-semibold text-white">Citizen Quick Actions</h2>
-                  <span className="px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-xs font-semibold text-blue-300 border border-blue-500/30">
+              <div className="mb-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-h3 font-semibold text-white">Citizen Quick Actions</h2>
+                  <span className="px-2 py-1 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-xs font-semibold text-blue-300 border border-blue-500/30">
                     Live Workspace
                   </span>
                 </div>
-                <p className="text-body text-blue-200">
+                <p className="text-caption text-blue-200">
                   Run critical tasks quickly during emergency response windows.
                 </p>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-2 sm:grid-cols-2">
                 {quickActions.map((action, index) => (
                   <motion.button
                     key={action.title}
                     variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}
                     transition={{ duration: 0.3, delay: 0.1 * index }}
                     onClick={() => navigate(action.route)}
-                    className="group relative overflow-hidden rounded-xl border border-slate-600 bg-slate-800 p-4 text-left transition-all hover:border-blue-400 hover:bg-slate-700"
+                    className="group relative overflow-hidden rounded-lg border border-slate-600 bg-slate-800 p-3 text-left transition-all hover:border-blue-400 hover:bg-slate-700"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity" style={{ backgroundImage: `linear-gradient(135deg, ${action.color.replace('from-', '').replace(' to-', ', ')})` }} />
                     
                     <div className="relative z-10 flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className={`p-2 rounded-lg bg-gradient-to-br ${action.color}`}>
+                      <div className="flex items-center space-x-2">
+                        <div className={`p-1.5 rounded-lg bg-gradient-to-br ${action.color}`}>
                           {action.icon}
                         </div>
                         <div>
-                          <p className="text-body font-medium text-white">{action.title}</p>
-                          <p className="text-caption text-blue-200">{action.description}</p>
+                          <p className="text-small font-medium text-white">{action.title}</p>
+                          <p className="text-caption text-blue-200 text-xs">{action.description}</p>
                         </div>
                       </div>
-                      <span className="text-lg text-blue-400 group-hover:scale-110 transition-transform">
+                      <span className="text-sm text-blue-400 group-hover:scale-110 transition-transform">
                         {action.badge}
                       </span>
                     </div>
@@ -220,15 +220,15 @@ export default function PremiumUserDashboard() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/30">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Activity className="w-4 h-4 text-purple-400" />
-                  <p className="text-caption text-blue-300 uppercase tracking-wider">Community Pulse</p>
+              <div className="mt-4 p-3 rounded-xl bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/30">
+                <div className="flex items-center space-x-2 mb-1">
+                  <Activity className="w-3 h-3 text-purple-400" />
+                  <p className="text-caption text-blue-300 uppercase tracking-wider text-xs">Community Pulse</p>
                 </div>
-                <p className="text-h3 font-semibold text-white mb-1">
+                <p className="text-h3 font-semibold text-white text-sm mb-1">
                   Volunteer profiles submitted: {volunteers.length}
                 </p>
-                <p className="text-small text-blue-200">
+                <p className="text-caption text-blue-200 text-xs">
                   Local support strength for relief operations.
                 </p>
               </div>
@@ -243,15 +243,15 @@ export default function PremiumUserDashboard() {
                 <img
                   src="https://images.unsplash.com/photo-1469571486292-b53601020848?auto=format&fit=crop&w=1200&q=80"
                   alt="Shelter coordination"
-                  className="relative h-56 w-full rounded-2xl object-cover border border-slate-700"
+                  className="relative h-40 w-full rounded-2xl object-cover border border-slate-700"
                 />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="backdrop-blur-md bg-slate-800/80 rounded-xl p-3 border border-slate-600">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <p className="text-small font-medium text-white">Shelter coordination active</p>
+                <div className="absolute bottom-3 left-3 right-3">
+                  <div className="backdrop-blur-md bg-slate-800/80 rounded-lg p-2 border border-slate-600">
+                    <div className="flex items-center text-xs text-blue-200">
+                      <CheckCircle className="w-3 h-3 mr-1 text-green-400" />
+                      <span className="font-medium">Shelter coordination active</span>
                     </div>
-                    <p className="text-caption text-blue-200 mt-1">
+                    <p className="text-caption text-blue-300 text-xs mt-1">
                       {shelters.filter(s => s.available_capacity > 0).length} shelters with available capacity
                     </p>
                   </div>
@@ -265,17 +265,17 @@ export default function PremiumUserDashboard() {
       {/* Map Section */}
       <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
         <GlassCard delay={0.8}>
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/20 to-blue-500/20">
-              <Map className="w-6 h-6 text-green-400" />
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-green-500/20 to-blue-500/20">
+              <Map className="w-5 h-5 text-green-400" />
             </div>
             <div>
-              <h2 className="text-h2 font-semibold text-white">Public Risk and Shelter Map</h2>
-              <p className="text-small text-blue-200">Live monitoring of incidents and safe locations</p>
+              <h2 className="text-h3 font-semibold text-white">Public Risk and Shelter Map</h2>
+              <p className="text-caption text-blue-200">Live monitoring of incidents and safe locations</p>
             </div>
           </div>
           
-          <div className="relative h-[500px] rounded-xl overflow-hidden border border-slate-700">
+          <div className="relative h-80 rounded-xl overflow-hidden border border-slate-700">
             <PremiumMapCard 
               shelters={shelters} 
               sos={sos} 

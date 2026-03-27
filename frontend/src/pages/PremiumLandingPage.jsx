@@ -127,7 +127,9 @@ export default function PremiumLandingPage() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link to="/login" className="text-small text-blue-200 transition hover:text-white">Log in</Link>
-            <AnimatedButton variant="primary" size="sm">Sign up</AnimatedButton>
+            <Link to="/login">
+              <AnimatedButton variant="primary" size="sm">Sign up</AnimatedButton>
+            </Link>
           </div>
         </div>
       </header>
@@ -433,15 +435,21 @@ export default function PremiumLandingPage() {
                   Start with your state, scale to districts, and expand nationally with one consistent architecture.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <AnimatedButton variant="primary" icon={<ArrowRight size={16} />}>
-                    Start Free
-                  </AnimatedButton>
-                  <AnimatedButton variant="glass" icon={<Users size={16} />}>
-                    Join as Volunteer
-                  </AnimatedButton>
-                  <AnimatedButton variant="glass" icon={<Activity size={16} />}>
-                    Live AI News
-                  </AnimatedButton>
+                  <Link to="/login">
+                    <AnimatedButton variant="primary" icon={<ArrowRight size={16} />}>
+                      Start Free
+                    </AnimatedButton>
+                  </Link>
+                  <Link to="/login">
+                    <AnimatedButton variant="glass" icon={<Users size={16} />}>
+                      Join as Volunteer
+                    </AnimatedButton>
+                  </Link>
+                  <Link to="/login">
+                    <AnimatedButton variant="glass" icon={<Activity size={16} />}>
+                      Live AI News
+                    </AnimatedButton>
+                  </Link>
                 </div>
               </div>
               <div className="relative">

@@ -125,15 +125,15 @@ export default function PremiumAdminDashboard() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8"
+      className="space-y-6"
     >
       {/* Page Header */}
       <motion.div variants={itemVariants} className="flex items-center justify-between">
         <div>
-          <h1 className="text-hero font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+          <h1 className="text-h2 font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
             Command Center
           </h1>
-          <p className="text-body text-gray-400">
+          <p className="text-small text-gray-400">
             Real-time disaster management overview and response coordination
           </p>
         </div>
