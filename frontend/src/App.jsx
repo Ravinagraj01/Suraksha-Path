@@ -16,6 +16,7 @@ import PremiumVolunteers from "./pages/PremiumVolunteersPage";
 import PremiumNewsPage from "./pages/PremiumNewsPage";
 import PremiumLoginPage from "./pages/PremiumLoginPage";
 import PremiumProfilePage from "./pages/PremiumProfilePage";
+import PremiumDisasterPredictionPage from "./pages/PremiumDisasterPredictionPage";
 
 function ProtectedRoute({ children, roles }) {
   const { token, role, ready } = useAuth();
@@ -66,6 +67,7 @@ export default function App() {
                   <Route path="news" element={<PremiumNewsPage />} />
                   <Route path="profile" element={<PremiumProfilePage />} />
                   <Route path="reports" element={<PremiumReportsPage />} />
+                  <Route path="predict" element={<PremiumDisasterPredictionPage />} />
                 </Routes>
               </DashboardLayout>
             </ProtectedRoute>

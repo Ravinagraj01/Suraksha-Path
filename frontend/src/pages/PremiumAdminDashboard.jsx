@@ -1,14 +1,26 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { 
+  Shield, 
   AlertTriangle, 
-  FileText, 
-  Home, 
-  CheckCircle, 
-  TrendingUp,
-  Activity,
-  Users,
-  Shield
+  Users, 
+  Activity, 
+  TrendingUp, 
+  Search, 
+  Filter,
+  RefreshCw,
+  Eye,
+  Edit,
+  Trash2,
+  ChevronDown,
+  Clock,
+  MapPin,
+  User,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  FileText,
+  Home
 } from "lucide-react";
 
 import KpiCard from "../components/ui/KpiCard";
@@ -23,10 +35,20 @@ import api from "../services/api";
 import { connectSocket } from "../services/websocket";
 
 export default function PremiumAdminDashboard() {
-  const [sos, setSos] = useState([]);
   const [shelters, setShelters] = useState([]);
+  const [sos, setSos] = useState([]);
   const [reports, setReports] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [incidents, setIncidents] = useState([
+    { id: '74b432b3', message: 'WebSocket Test SOS', severity: 'medium', status: 'open', createdAt: '2024-03-27T14:30:00Z', location: 'Mumbai Central', affectedPeople: 0 },
+    { id: '71554e53', message: 'WebSocket Test SOS', severity: 'medium', status: 'open', createdAt: '2024-03-27T14:25:00Z', location: 'Pune Station', affectedPeople: 0 },
+    { id: '45f9191e', message: 'Test SOS - Emergency flood situation', severity: 'high', status: 'open', createdAt: '2024-03-27T14:20:00Z', location: 'Delhi North', affectedPeople: 12 },
+    { id: 'bc6b6b66', message: 'Need emergency support near flooded market.', severity: 'high', status: 'open', createdAt: '2024-03-27T14:15:00Z', location: 'Kolkata Market', affectedPeople: 8 },
+    { id: 'd3a0dd45', message: 'Flash flood near Riverside Block, 3 people stranded', severity: 'critical', status: 'open', createdAt: '2024-03-27T14:10:00Z', location: 'Chennai Riverside', affectedPeople: 3 }
+  ]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [severityFilter, setSeverityFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,29 +63,99 @@ export default function PremiumAdminDashboard() {
         setShelters(sheltersRes.data);
         setReports(reportsRes.data);
       } catch (error) {
-        console.error('Failed to fetch dashboard data:', error);
+        console.error("Failed to fetch dashboard data:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-
-    const sosSocket = connectSocket("/ws/sos-feed", (msg) => {
-      if (msg.event === "sos_created") setSos((prev) => [msg.data, ...prev].slice(0, 200));
-    });
-
-    const shelterSocket = connectSocket("/ws/shelter-updates", (msg) => {
-      if (msg.event === "capacity_updated") {
-        setShelters((prev) => prev.map((s) => (s.id === msg.data.id ? msg.data : s)));
+    
+    // WebSocket connection with error handling
+    let socket = null;
+    try {
+      socket = connectSocket("/ws");
+      if (socket) {
+        socket.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            if (data.type === 'newSOS') {
+              setSos(prev => [data.payload, ...prev]);
+            } else if (data.type === 'newReport') {
+              setReports(prev => [data.payload, ...prev]);
+            }
+          } catch (error) {
+            console.error('Error parsing WebSocket message:', error);
+          }
+        };
+        
+        socket.onclose = () => {
+          console.log('WebSocket connection closed');
+        };
+        
+        socket.onerror = (error) => {
+          console.error('WebSocket error:', error);
+        };
       }
-    });
+    } catch (error) {
+      console.error('Failed to establish WebSocket connection:', error);
+    }
 
     return () => {
-      sosSocket.close();
-      shelterSocket.close();
+      if (socket) socket.close();
     };
   }, []);
+
+  // Helper functions for incidents
+  const getSeverityColor = (severity) => {
+    switch (severity) {
+      case 'critical': return 'bg-red-500/20 text-red-400 border-red-500/30';
+      case 'high': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
+      case 'medium': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+      case 'low': return 'bg-green-500/20 text-green-400 border-green-500/30';
+      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+    }
+  };
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case 'open': return <AlertCircle className="w-4 h-4 text-yellow-400" />;
+      case 'in_progress': return <RefreshCw className="w-4 h-4 text-blue-400" />;
+      case 'resolved': return <CheckCircle className="w-4 h-4 text-green-400" />;
+      case 'closed': return <XCircle className="w-4 h-4 text-gray-400" />;
+      default: return <AlertCircle className="w-4 h-4 text-gray-400" />;
+    }
+  };
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'open': return 'text-yellow-400';
+      case 'in_progress': return 'text-blue-400';
+      case 'resolved': return 'text-green-400';
+      case 'closed': return 'text-gray-400';
+      default: return 'text-gray-400';
+    }
+  };
+
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    });
+  };
+
+  const filteredIncidents = incidents.filter(incident => {
+    const matchesSearch = incident.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         incident.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         incident.id.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSeverity = severityFilter === 'all' || incident.severity === severityFilter;
+    const matchesStatus = statusFilter === 'all' || incident.status === statusFilter;
+    
+    return matchesSearch && matchesSeverity && matchesStatus;
+  });
 
   const trendData = useMemo(
     () => [
@@ -252,19 +344,165 @@ export default function PremiumAdminDashboard() {
         </div>
       </motion.div>
 
-      {/* Recent Incidents Table */}
+      {/* Enhanced Recent Incidents Section */}
       <motion.div variants={itemVariants}>
         <GlassCard delay={1.0}>
-          <div className="mb-6 flex items-center justify-between">
-            <div>
-              <h2 className="text-h2 font-semibold text-white mb-2">Recent Incidents</h2>
-              <p className="text-small text-gray-400">Latest SOS alerts and damage reports</p>
+          {/* Header with Search and Filters */}
+          <div className="mb-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-h2 font-semibold text-white mb-2">Recent Incidents</h2>
+                <p className="text-small text-gray-400">Latest SOS alerts and damage reports</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <AnimatedButton variant="glass" size="sm" icon={<RefreshCw size={14} />}>
+                  Refresh
+                </AnimatedButton>
+                <AnimatedButton variant="primary" size="sm" icon={<Eye size={14} />}>
+                  View All
+                </AnimatedButton>
+              </div>
             </div>
-            <AnimatedButton variant="glass" size="sm">
-              View All
-            </AnimatedButton>
+
+            {/* Search and Filter Bar */}
+            <div className="grid gap-4 md:grid-cols-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search incidents..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:bg-slate-600"
+                />
+              </div>
+              
+              <select 
+                value={severityFilter}
+                onChange={(e) => setSeverityFilter(e.target.value)}
+                className="bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-400 focus:bg-slate-600"
+              >
+                <option value="all">All Severities</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+              
+              <select 
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-400 focus:bg-slate-600"
+              >
+                <option value="all">All Status</option>
+                <option value="open">Open</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+              </select>
+
+              <div className="flex items-center justify-between text-small text-gray-400">
+                <span>{filteredIncidents.length} incidents</span>
+                <span className="text-green-400">Live</span>
+              </div>
+            </div>
           </div>
-          <DataTable rows={sos} />
+
+          {/* Enhanced Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-slate-700">
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">ID</th>
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">Message</th>
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">Severity</th>
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">Status</th>
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">Location</th>
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">Affected</th>
+                  <th className="text-left py-3 px-4 text-small font-semibold text-gray-300">Created</th>
+                  <th className="text-center py-3 px-4 text-small font-semibold text-gray-300">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredIncidents.map((incident, index) => (
+                  <motion.tr
+                    key={incident.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="border-b border-slate-700/50 hover:bg-slate-800/50 transition-colors"
+                  >
+                    <td className="py-3 px-4">
+                      <span className="text-small font-mono text-purple-300">{incident.id.slice(0, 8)}</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <p className="text-small text-white max-w-xs truncate">{incident.message}</p>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getSeverityColor(incident.severity)}`}>
+                        {incident.severity.toUpperCase()}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center space-x-2">
+                        {getStatusIcon(incident.status)}
+                        <span className={`text-small font-medium ${getStatusColor(incident.status)}`}>
+                          {incident.status.replace('_', ' ').toUpperCase()}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center text-small text-gray-300">
+                        <MapPin size={14} className="mr-1" />
+                        {incident.location}
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center text-small text-gray-300">
+                        <User size={14} className="mr-1" />
+                        {incident.affectedPeople || 0}
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center text-small text-gray-300">
+                        <Clock size={14} className="mr-1" />
+                        {formatTime(incident.createdAt)}
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center justify-center space-x-2">
+                        <button className="p-1.5 rounded hover:bg-slate-700 transition-colors group">
+                          <Eye size={14} className="text-gray-400 group-hover:text-white transition-colors" />
+                        </button>
+                        <button className="p-1.5 rounded hover:bg-slate-700 transition-colors group">
+                          <Edit size={14} className="text-gray-400 group-hover:text-white transition-colors" />
+                        </button>
+                        <button className="p-1.5 rounded hover:bg-slate-700 transition-colors group">
+                          <Trash2 size={14} className="text-gray-400 group-hover:text-red-400 transition-colors" />
+                        </button>
+                      </div>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-700">
+            <div className="text-small text-gray-400">
+              Showing {filteredIncidents.length} of {incidents.length} incidents
+            </div>
+            <div className="flex items-center space-x-2">
+              <button className="px-3 py-1 rounded bg-slate-700 text-gray-300 hover:bg-slate-600 transition-colors disabled:opacity-50" disabled>
+                Previous
+              </button>
+              <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded">1</span>
+              <button className="px-3 py-1 rounded bg-slate-700 text-gray-300 hover:bg-slate-600 transition-colors disabled:opacity-50" disabled>
+                Next
+              </button>
+            </div>
+          </div>
         </GlassCard>
       </motion.div>
 

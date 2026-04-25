@@ -13,7 +13,8 @@ import {
   Menu,
   X,
   Shield,
-  Activity
+  Activity,
+  Brain
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import ThemeToggle from './ui/ThemeToggle';
@@ -26,6 +27,7 @@ const menuItems = [
   { path: '/dashboard/volunteers', label: 'Volunteers', icon: Users },
   { path: '/dashboard/news', label: 'AI News', icon: Newspaper },
   { path: '/dashboard/reports', label: 'Reports', icon: FileText },
+  { path: '/dashboard/predict', label: 'AI Prediction', icon: Brain },
   { path: '/dashboard/profile', label: 'Profile', icon: User },
 ];
 
